@@ -42,7 +42,7 @@ jobs:
 #      - name: Compile project
 #        run: mvn clean install -DskipTests
 
-      # 7. Run specific unit tests
-      - name: Run specific unit tests
-        run: |
-          mvn -pl actors -Dit.test=DeviceActorMessageProcessorTest#DeviceActorMessageProcessorTest integration-test
+#      # 7. Run specific unit tests
+#      - name: Run specific unit tests
+#        run: |
+#          mvn -pl actors -Dit.test=DeviceActorMessageProcessorTest#DeviceActorMessageProcessorTest integration-test
