@@ -27,7 +27,6 @@ jobs:
         with:
           node-version: 18
           cache: yarn
-          cache-dependency-path: 'yarn.lock'
 
       # 4. Enable Yarn (via Corepack)
       - name: Enable Yarn
