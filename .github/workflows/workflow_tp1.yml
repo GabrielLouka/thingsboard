@@ -36,7 +36,7 @@ jobs:
       # 5. Install frontend dependencies
       - name: Install frontend dependencies
         run: |
-          npm install -g yarn
+          npm install -g yarn && yarn install
 
       # 6. Compile project (skip tests)
       - name: Compile project
