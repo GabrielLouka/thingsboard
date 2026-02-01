@@ -33,14 +33,14 @@ jobs:
           corepack enable
           yarn --version
 
-      # 5. Install frontend dependencies
-      #- name: Install frontend dependencies
-       # run: |
-       #   npm install -g yarn && yarn install
-
-      # 6. Compile project (skip tests)
-      - name: Compile project
-        run: mvn clean install -DskipTests
+#      # 5. Install frontend dependencies
+#      - name: Install frontend dependencies
+#        run: |
+#          npm install -g yarn && yarn install
+#
+#      # 6. Compile project (skip tests)
+#      - name: Compile project
+#        run: mvn clean install -DskipTests
 
       # 7. Run specific unit tests
       - name: Run specific unit tests
