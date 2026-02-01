@@ -36,9 +36,7 @@ jobs:
       # 5. Install frontend dependencies
       - name: Install frontend dependencies
         run: |
-          cd js-executor && yarn install
-          cd ../web-ui && yarn install
-          cd ../ui-ngx && yarn install
+          npm install -g yarn
 
       # 6. Compile project (skip tests)
       - name: Compile project
