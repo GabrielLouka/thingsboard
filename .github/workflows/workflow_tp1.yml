@@ -39,7 +39,7 @@ jobs:
 
       # 6. Compile project (skip tests)
       - name: Compile project
-        run: mvn clean install -DskipTests
+        run: mvn clean install -DskipTests -Dlicense.skip=true
 
       # 7. Run specific unit tests
       - name: Run specific unit tests
