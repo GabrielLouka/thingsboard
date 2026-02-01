@@ -35,14 +35,12 @@ jobs:
 
 #      # 5. Install frontend dependencies
 #      - name: Install frontend dependencies
-#        run: |
-#          npm install -g yarn && yarn install
-#
-#      # 6. Compile project (skip tests)
-#      - name: Compile project
-#        run: mvn clean install -DskipTests
+#        run: npm install -g yarn && yarn install
 
-#      # 7. Run specific unit tests
-#      - name: Run specific unit tests
-#        run: |
-#          mvn -pl actors -Dit.test=DeviceActorMessageProcessorTest#DeviceActorMessageProcessorTest integration-test
+      # 6. Compile project (skip tests)
+      - name: Compile project
+        run: mvn clean install -DskipTests
+
+      # 7. Run specific unit tests
+      - name: Run specific unit tests
+        run: mvn -f application/pom.xml -Dit.test=DeviceActorMessageProcessorTest#DeviceActorMessageProcessorTest test
