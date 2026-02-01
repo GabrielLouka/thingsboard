@@ -45,4 +45,4 @@ jobs:
       # 7. Run specific unit tests
       - name: Run specific unit tests
         run: |
-          mvn test -Dtest=DeviceActorMessageProcessorTest
+          mvn -pl actors -Dit.test=DeviceActorMessageProcessorTest#DeviceActorMessageProcessorTest integration-test
