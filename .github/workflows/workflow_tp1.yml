@@ -47,9 +47,12 @@ jobs:
 #      - name: Install frontend dependencies
 #        run: npm install -g yarn && yarn install
 
+
+
+
       # 6. Compile project (skip tests)
-      - name: Compile project
-        run: mvn -f application/pom.xml clean install -DskipTests -Dlicense.skip=true
+      - name: Build ThingsBoard common modules
+        run: mvn clean install -DskipTests -Dlicense.skip=true -T 2C
 
       # 7. Run specific unit tests
       - name: Run specific unit tests
