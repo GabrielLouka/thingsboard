@@ -62,8 +62,14 @@ jobs:
             -p 9090:9090 \
             thingsboard/tb-postgres:latest
 
-      - name: Wait for ThingsBoard to start
-        run: sleep 60
+      - name: Wait for ThingsBoard to be ready
+        run: |
+          for i in {1..40}; do
+            curl -f http://localhost:9090 && exit 0
+            sleep 5
+          done
+          exit 1
 
-      - name: Check ThingsBoard health
-        run: curl -f http://localhost:9090 || exit 1
+      - name: Dump ThingsBoard logs
+        if: failure()
+        run: docker logs thingsboard
