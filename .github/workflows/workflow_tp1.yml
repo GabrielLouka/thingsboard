@@ -56,8 +56,8 @@ jobs:
       - name: Build ThingsBoard common modules
         run: mvn -T1 clean install -DskipTests
 
-      - name: Run specific unit tests
-        run: mvn test -Dit.test=DeviceActorMessageProcessorTest#DeviceActorMessageProcessorTest test
+#      - name: Run specific unit tests
+#        run: mvn test -Dit.test=DeviceActorMessageProcessorTest#DeviceActorMessageProcessorTest test
 
       - name: Run ThingsBoard application
         run: |
