@@ -1,20 +1,33 @@
+#
+# Copyright © 2016-2026 The Thingsboard Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 name: workflow_tp1.yml
 on:
   push:
     branches: [ master]
   pull_request:
 
-
 jobs:
   build-test-run:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout source code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Cache Maven dependencies
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
@@ -23,7 +36,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      # 2. Set up Java
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -31,29 +43,24 @@ jobs:
           java-version: 17
           cache: maven
 
-      # 3. Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      # 4. Enable Yarn (via Corepack)
       - name: Enable Yarn
         run: |
           corepack enable
           yarn --version
 
-#      # 5. Install frontend dependencies
-#      - name: Install frontend dependencies
-#        run: npm install -g yarn && yarn install
-
-
-
-
-      # 6. Compile project (skip tests)
       - name: Build ThingsBoard common modules
-        run: mvn clean install -DskipTests -Dlicense.skip=true -T 2C
+        run: mvn -T1 clean install -DskipTests
 
-      # 7. Run specific unit tests
       - name: Run specific unit tests
-        run: mvn -f application/pom.xml -Dit.test=DeviceActorMessageProcessorTest#DeviceActorMessageProcessorTest test
+        run: mvn test -Dit.test=DeviceActorMessageProcessorTest#DeviceActorMessageProcessorTest test
+
+      - name: Run ThingsBoard application
+        run: |
+          docker pull thingsboard/tb-postgres:latest |
+          docker run -d --name thingsboard -p 9090:9090 -p 1883:1883 thingsboard/tb-postgres:latest |
+          java -jar application/target/thingsboard-4.4.0-SNAPSHOT-boot.jar
