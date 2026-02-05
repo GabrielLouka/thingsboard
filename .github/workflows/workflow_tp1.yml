@@ -56,11 +56,14 @@ jobs:
       - name: Build ThingsBoard common modules
         run: mvn -T1 clean install -DskipTests
 
-#      - name: Run specific unit tests
-#        run: mvn test -Dit.test=DeviceActorMessageProcessorTest#DeviceActorMessageProcessorTest test
-
-      - name: Run ThingsBoard application
+      - name: Start ThingsBoard (Docker)
         run: |
-          docker pull thingsboard/tb-postgres:latest |
-          docker run -d --name thingsboard -p 9090:9090 -p 1883:1883 thingsboard/tb-postgres:latest |
-          java -jar application/target/thingsboard-4.4.0-SNAPSHOT-boot.jar
+          docker run -d --name thingsboard \
+            -p 9090:9090 \
+            thingsboard/tb-postgres:latest
+
+      - name: Wait for ThingsBoard to start
+        run: sleep 60
+
+      - name: Check ThingsBoard health
+        run: curl -f http://localhost:9090 || exit 1
