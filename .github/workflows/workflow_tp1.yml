@@ -56,6 +56,9 @@ jobs:
       - name: Build ThingsBoard common modules
         run: mvn -T1 clean install -DskipTests
 
+      - name: Run tests for selected modules
+        run: mvn -pl application -am test
+
       - name: Start ThingsBoard (Docker)
         run: |
           docker run -d --name thingsboard \
