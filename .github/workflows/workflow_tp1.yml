@@ -57,7 +57,7 @@ jobs:
         run: mvn -T1 clean install -DskipTests
 
       - name: Run tests for selected modules
-        run: mvn -pl application -am -Dtest=DeviceActorMessageProcessorTest test
+        run: mvn -pl application -am test "-Dtest=DeviceActorMessageProcessorTest" "-Dsurefire.failIfNoSpecifiedTests=false"
 
       - name: Start ThingsBoard (Docker)
         run: |
