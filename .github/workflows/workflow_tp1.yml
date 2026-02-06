@@ -76,3 +76,4 @@ jobs:
       - name: Dump ThingsBoard logs
         if: failure()
         run: docker logs thingsboard
+
