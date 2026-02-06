@@ -25,7 +25,9 @@ public class TestFuncTP1 {
     void shouldWarnWhenEnvIsMissing() {
         String message = TP1_FUNC.check_env();
 
-        Assertions.assertEquals("[CustomFeature] WARNING: TB_ENV is not set. Default behavior will be used.", message);
+        Assertions.assertEquals("WARNING: TB_ENV is not set. Default behavior will be used.", message);
     }
 }
+
+
 

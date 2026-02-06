@@ -24,10 +24,12 @@ public class TP1_FUNC {
         String env = System.getenv("TB_ENV");
 
         if (env == null || env.isBlank()) {
-            return "[CustomFeature] WARNING: TB_ENV is not set. Default behavior will be used.";
+            return "WARNING: TB_ENV is not set. Default behavior will be used.";
         }
 
-        return "[CustomFeature] TB_ENV detected: " + env;
+        return "TB_ENV detected: " + env;
     }
+
+
 
 }
