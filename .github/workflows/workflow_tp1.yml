@@ -82,9 +82,4 @@ jobs:
         run: |        
           jmeter.bat -n -t "jmeter-test\tp1-q4.jmx" -l "jmeter-test\results.csv"
 
-          - name: Upload JMeter results
-            uses: actions/upload-artifact@v3
-            with:
-              name: jmeter-results
-              path: "jmeter-test\results.csv"
 
