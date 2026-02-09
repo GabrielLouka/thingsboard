@@ -77,3 +77,15 @@ jobs:
         if: failure()
         run: docker logs thingsboard
 
+
+      - name: Run JMeter Test
+        run: |
+          cd "C:\Users\gab_l\apache-jmeter-5.6.3\bin"
+          jmeter.bat -n -t "C:\Users\gab_l\UNI WORK\SESSION H26\inf8371\tp1\fork tp1\jmeter-test\tp1-q4.jmx" -l "C:\Users\gab_l\UNI WORK\SESSION H26\inf8371\tp1\fork tp1\jmeter-test\results.csv"
+
+          - name: Upload JMeter results
+            uses: actions/upload-artifact@v3
+            with:
+              name: jmeter-results
+              path: "C:\Users\gab_l\UNI WORK\SESSION H26\inf8371\tp1\fork tp1\jmeter-test\results.csv"
+
