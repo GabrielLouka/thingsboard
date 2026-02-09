@@ -80,6 +80,6 @@ jobs:
 
       - name: Run JMeter Test
         run: |        
-          jmeter.bat -n -t "jmeter-test\tp1-q4.jmx" -l "jmeter-test\results.csv"
+          jmeter -n -t "jmeter-test\tp1-q4.jmx" -l "jmeter-test\results.csv"
 
 
